@@ -15,10 +15,10 @@ use App\Http\Controllers\SeriesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/series');
 });
 
-Route::get('/series', [SeriesController::class, 'index']);
-Route::get('/series/criar', [SeriesController::class, 'create']);
-Route::post('/series/salvar', [SeriesController::class, 'store']);
+Route::resource('/series', SeriesController::class)
+    ->only(['index', 'create', 'store']);
 
+Route::post('/series/destroy', [SeriesController::class, 'destroy']);
